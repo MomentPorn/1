@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>MoonHub</title>
+<style>
+/* === BASE STYLES === */
+* { box-sizing: border-box; margin:0; padding:0; }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background:#121212; /* Dark theme */
+  color:#fff;
+}
+
+/* === HEADER === */
+h1 {
+  text-align:center;
+  padding:20px;
+  font-size:2rem;
+  font-weight:800;
+  background: linear-gradient(90deg,#e50914,#ff4500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:2px 2px 6px rgba(0,0,0,0.5);
+  margin-bottom:15px;
+}
+
+/* === SEARCH BAR === */
+.search-bar {
+  width:90%;
+  max-width:600px;
+  margin:0 auto 30px auto;
+  text-align:center;
+}
+
+.search-bar input {
+  width:100%;
+  padding:14px 18px;
+  font-size:16px;
+  border-radius:30px;
+  border:none;
+  outline:none;
+  background:#1f1f1f;
+  color:#fff;
+  box-shadow:0 4px 12px rgba(0,0,0,0.6);
+  transition:0.3s;
+}
+
+.search-bar input:focus {
+  background:#2a2a2a;
+  box-shadow:0 4px 20px rgba(255,69,0,0.7);
+}
+
+/* === HORIZONTAL SCROLL === */
+.horizontal-scroll {
+  display:flex;
+  overflow-x:auto;
+  gap:15px;
+  padding:10px 20px 20px 20px;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  height:8px;
+}
+.horizontal-scroll::-webkit-scrollbar-thumb {
+  background:#ff4500;
+  border-radius:4px;
+}
+.horizontal-scroll::-webkit-scrollbar-track {
+  background:#222;
+}
+
+/* === CARD STYLES === */
+.card {
+  flex:0 0 auto;
+  background:#1f1f1f;
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display:flex;
+  flex-direction:column;
+  color:#fff;
+  text-align:center;
+}
+
+.card img {
+  width:100%;
+  object-fit:cover;
+  border-bottom:1px solid #333;
+  transition: transform 0.3s;
+}
+
+.card h3 {
+  margin:5px;
+  font-size:14px;
+}
+
+.card .subtitle {
+  font-size:12px;
+  color:#ccc;
+  margin-bottom:5px;
+}
+
+.card:hover {
+  transform:scale(1.05);
+  box-shadow:0 12px 24px rgba(255,69,0,0.7);
+}
+
+/* === AKTYOR CARD === */
+.actor-card {
+  width:140px;
+  background:#1a1a1a; /* qoramtir fon */
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+}
+
+.actor-card img {
+  width:100%;
+  height:260px; /* rasm uzunligi */
+  object-fit:cover;
+  border-radius:8px 8px 0 0;
+  transition: transform 0.3s;
+}
+
+.actor-card .actor-name {
+  padding:8px 0;
+  font-size:14px;
+  font-weight:600;
+  color:#fff;
+  background:#1a1a1a;
+}
+
+.actor-card:hover {
+  transform:scale(1.05);
+  box-shadow:0 12px 28px rgba(255,255,255,0.3);
+  background:#1f1f1f;
+}
+
+/* === GRID (kino natijalari) === */
+.grid {
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+  padding:0 20px 20px 20px;
+  justify-content:center;
+}
+
+.grid .card {
+  width:160px;
+  height:220px;
+}
+
+/* === RESPONSIVE === */
+@media(max-width:1024px){
+  .actor-card img { height:220px; }
+  .grid .card { width:140px; height:200px; }
+}
+
+@media(max-width:768px){
+  .grid{padding:20px;}
+  .actor-card img { height:200px; }
+  .grid .card { width:45%; height:180px; }
+}
+
+@media(max-width:480px){
+  .grid .card { width:100%; height:160px; }
+  .actor-card img { height:160px; }
+  .search-bar input { font-size:14px; padding:10px 12px; }
+}
+</style>
+</head>
+<body>
+
+<h1>🎬 MoonHub</h1>
+
+<div class="search-bar">
+  <input type="text" id="search" placeholder="Kino, kategoriya yoki aktyor qidirish...">
+</div>
+
+<!-- HORIZONTAL SCROLLS AND GRID -->
+<div class="horizontal-scroll" id="actors-results"></div>
+<div class="horizontal-scroll" id="categories-results"></div>
+<div class="grid" id="movies-results"></div>
+
+<script src="data.js"></script>
+<script>
+const searchInput = document.getElementById("search");
+const moviesContainer = document.getElementById("movies-results");
+const actorsContainer = document.getElementById("actors-results");
+const categoriesContainer = document.getElementById("categories-results");
+
+function renderResults(){
+  const q = searchInput.value.toLowerCase();
+
+  // Kino filter
+  const filteredMovies = movies.filter(m =>
+    m.title.toLowerCase().includes(q) ||
+    m.categories.some(c => c.toLowerCase().includes(q)) ||
+    m.actors.some(a => a.name.toLowerCase().includes(q))
+  );
+  moviesContainer.innerHTML = "";
+  filteredMovies.forEach(m => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `<img src="${m.thumbnail}" alt="${m.title}"><h3>${m.title}</h3><div class="subtitle">${m.categories.join(", ")}</div>`;
+    div.onclick = () => window.location.href=`list.html?id=${m.id}`;
+    moviesContainer.appendChild(div);
+  });
+
+  // Aktyor filter
+  const filteredActors = actorsList.filter(a => a.name.toLowerCase().includes(q));
+  actorsContainer.innerHTML = "";
+  filteredActors.forEach(a => {
+    const div = document.createElement("div");
+    div.className = "card actor-card";
+    div.innerHTML = `<img src="${a.image}" alt="${a.name}"><div class="actor-name">${a.name}</div>`;
+    div.onclick = () => window.location.href=`actors.html?name=${encodeURIComponent(a.name)}`;
+    actorsContainer.appendChild(div);
+  });
+
+  // Kategoriya filter
+  const filteredCategories = categoriesList.filter(c => c.toLowerCase().includes(q));
+  categoriesContainer.innerHTML = "";
+  filteredCategories.forEach(c => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.style.width = "100px";
+    div.innerHTML = `<h3>${c}</h3>`;
+    div.onclick = () => window.location.href=`kategory.html?cat=${encodeURIComponent(c)}`;
+    categoriesContainer.appendChild(div);
+  });
+}
+
+// Input event
+searchInput.addEventListener("input", renderResults);
+
+// Boshlang‘ich holatda barcha natijalar
+renderResults();
+</script>
+
+</body>
+</html>
