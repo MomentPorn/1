@@ -19,7 +19,7 @@ body {
 
 /* === ACTORS SECTION === */
 .actors-section {
-  display:inline-flex; /* inline-flex yordamida chapdan boshlash */
+  display:inline-flex;
   gap:10px;
   overflow-x:auto;
   padding:10px 0;
@@ -70,7 +70,7 @@ body {
   width:100%;
   max-width:100%;
   position:relative;
-  padding-top:56.25%; /* 16:9 ratio */
+  padding-top:56.25%;
   border-radius:10px;
   overflow:hidden;
   margin-bottom:15px;
@@ -143,13 +143,14 @@ body {
 .similar-card:hover { transform:scale(1.05); box-shadow:0 10px 25px rgba(255,69,0,0.7); }
 .similar-card:hover img { transform:scale(1.05); }
 
-/* === RESPONSIVE ADJUSTMENTS === */
+/* === RESPONSIVE FOR MOBILE === */
 @media(max-width:768px){
   .actor-card { width:70px; }
   .actor-card img { height:100px; }
   .actor-card h3 { font-size:11px; }
   #similar-movies { grid-template-columns:repeat(2,1fr); }
   #movie-title { font-size:1.3rem; }
+  .card-category { font-size:11px; padding:4px 10px; }
 }
 @media(max-width:480px){
   .actor-card { width:60px; }
@@ -157,7 +158,8 @@ body {
   .actor-card h3 { font-size:10px; }
   #similar-movies { grid-template-columns:repeat(2,1fr); }
   #movie-title { font-size:1.1rem; }
-  .card-category { font-size:10px; padding:4px 10px; }
+  .card-category { font-size:10px; padding:3px 8px; }
+  .player { padding-top:56%; } /* video player kichik ekran uchun */
 }
 </style>
 </head>
