@@ -17,7 +17,7 @@ header {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:15px 20px;
+  padding:18px 40px;
   background: linear-gradient(90deg,#e50914,#ff4500);
   position:sticky;
   top:0;
@@ -25,7 +25,7 @@ header {
   box-shadow:0 4px 10px rgba(0,0,0,0.6);
 }
 header h1 {
-  font-size:1.6rem;
+  font-size:2rem;
   font-weight:800;
   background: linear-gradient(90deg,#ff6b6b,#ffd700);
   -webkit-background-clip: text;
@@ -38,16 +38,16 @@ header h1:hover { transform:scale(1.05); }
 
 /* SEARCH ICON */
 .search-icon {
-  font-size:1.6rem;
+  font-size:1.8rem;
   cursor:pointer;
   display:flex;
   align-items:center;
   justify-content:center;
-  width:40px;
-  height:40px;
+  width:48px;
+  height:48px;
   border-radius:50%;
   background: linear-gradient(135deg,#ff4500,#ff6b6b);
-  box-shadow:0 4px 10px rgba(255,69,0,0.5);
+  box-shadow:0 4px 12px rgba(255,69,0,0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 .search-icon:hover {
@@ -58,29 +58,25 @@ header h1:hover { transform:scale(1.05); }
 
 /* GRID */
 .grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
-  gap:15px;
-  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:25px;
+  padding:30px 40px;
 }
 
 /* CARD */
 .card {
   position:relative;
+  width:100%;
+  height:400px;
   border-radius:12px;
   overflow:hidden;
   background:#1f1f1f;
   cursor:pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height:220px;
 }
-.card:hover { transform:scale(1.02); box-shadow:0 8px 20px rgba(0,0,0,0.8); }
-.card img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition: transform 0.3s ease;
-}
+.card:hover { transform:scale(1.02); box-shadow:0 12px 24px rgba(0,0,0,0.8); }
+.card img { width:100%; height:100%; object-fit:cover; transition: transform 0.4s ease; }
 .card:hover img { transform:scale(1.05); }
 
 /* OVERLAY */
@@ -88,37 +84,25 @@ header h1:hover { transform:scale(1.05); }
   position:absolute;
   bottom:0; left:0; right:0;
   background: linear-gradient(to top, rgba(31,31,31,0.95), rgba(31,31,31,0));
-  padding:8px 10px 10px 10px;
+  padding:10px 20px 20px 20px;
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
 }
-.card .overlay .subtitle { font-size:0.85rem; color:#ffd700; text-align:center; margin-bottom:3px; }
-.card .overlay h3 { font-size:1rem; font-weight:600; margin-top:3px; color:#ff4500; text-align:center; }
-.card .overlay .play-icon { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:1.8rem; color:#ff4500; opacity:0; transition:opacity 0.4s ease; }
+.card .overlay .subtitle { font-size:1rem; color:#ffd700; text-align:center; margin-bottom:5px; }
+.card .overlay h3 { font-size:1.6rem; font-weight:600; margin-top:5px; color:#ff4500; text-align:center; }
+.card .overlay .play-icon { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:2.5rem; color:#ff4500; opacity:0; transition:opacity 0.4s ease; }
 .card:hover .overlay .play-icon { opacity:1; }
 
 /* RESPONSIVE */
-@media(max-width:768px){
-  .grid { grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); padding:15px; gap:12px; }
-  .card { height:180px; }
-  .card .overlay h3 { font-size:0.9rem; }
-  .card .overlay .subtitle { font-size:0.75rem; }
-}
-@media(max-width:480px){
-  .grid { grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); padding:10px; gap:10px; }
-  .card { height:150px; }
-  .card .overlay h3 { font-size:0.8rem; }
-  .card .overlay .subtitle { font-size:0.7rem; }
-  header h1 { font-size:1.4rem; }
-  .search-icon { width:35px; height:35px; font-size:1.4rem; }
-}
+@media(max-width:1024px){ .card{height:350px;} .card .overlay h3{font-size:1.4rem;} }
+@media(max-width:768px){ .grid{padding:20px;} .card{height:250px;} .card .overlay h3{font-size:1.2rem;} .card .overlay .subtitle{font-size:0.9rem;} .card .overlay .play-icon{font-size:2rem;} header h1{font-size:1.6rem;} .search-icon{width:40px; height:40px; font-size:1.6rem;} }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>🎬 Porno</h1>
+  <h1>🎬 Kino Sayt</h1>
   <div class="search-icon" onclick="window.location.href='search.html'">🔍</div>
 </header>
 
@@ -141,6 +125,7 @@ function renderGrid(list){
         <div class="play-icon">▶</div>
       </div>
     `;
+    // ✅ Kino ustiga bosilganda list.html sahifasida video avtomatik chiqadi
     div.onclick=()=>window.location.href=`list.html?id=${encodeURIComponent(movie.title)}`;
     container.appendChild(div);
   });
