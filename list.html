@@ -2,7 +2,6 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Movie Details</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -15,27 +14,29 @@ body {
   flex-direction:column;
   align-items:center;
   padding:10px;
+  width:100%;
 }
 
 /* === ACTORS SECTION === */
 .actors-section {
-  display:flex;
+  display:inline-flex; /* inline-flex yordamida chapdan boshlash */
   gap:10px;
   overflow-x:auto;
   padding:10px 0;
-  margin-bottom:20px;
+  margin-bottom:15px;
   scroll-behavior:smooth;
-  justify-content:flex-start; /* chapdan boshlab terish */
-  direction:ltr; /* scrollbar va elementlar chapdan o‘qilishi */
+  justify-content:flex-start;
+  align-items:flex-start;
+  min-width:100%;
 }
-.actors-section::-webkit-scrollbar { height:8px; }
+.actors-section::-webkit-scrollbar { height:6px; }
 .actors-section::-webkit-scrollbar-thumb {
   background: #ff4500;
   border-radius:4px;
 }
 .actor-card {
   flex:0 0 auto;
-  width:100px;
+  width:90px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -44,19 +45,19 @@ body {
 }
 .actor-card img {
   width:100%;
-  height:140px;
+  height:120px;
   object-fit:cover;
-  border-radius:12px;
+  border-radius:10px;
   border:2px solid #ff4500;
   box-shadow:0 5px 15px rgba(255,69,0,0.5);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .actor-card:hover img {
   transform: scale(1.05);
-  box-shadow:0 15px 35px rgba(255,69,0,0.7);
+  box-shadow:0 10px 25px rgba(255,69,0,0.7);
 }
 .actor-card h3 {
-  margin-top:5px;
+  margin-top:6px;
   font-size:12px;
   text-align:center;
   color:#ff4500;
@@ -67,12 +68,12 @@ body {
 /* === VIDEO PLAYER === */
 .player {
   width:100%;
-  max-width:500px; /* telefon ekraniga mos */
+  max-width:100%;
   position:relative;
   padding-top:56.25%; /* 16:9 ratio */
-  border-radius:12px;
+  border-radius:10px;
   overflow:hidden;
-  margin-bottom:20px;
+  margin-bottom:15px;
   box-shadow:0 10px 25px rgba(255,69,0,0.5);
 }
 .player video {
@@ -81,19 +82,19 @@ body {
   width:100%;
   height:100%;
   border:none;
-  border-radius:12px;
+  border-radius:10px;
 }
 
 /* === MOVIE TITLE === */
 #movie-title {
-  font-size:1.8rem;
+  font-size:1.5rem;
   font-weight:700;
   margin:10px 0;
   text-align:center;
   background: linear-gradient(90deg,#ff4500,#ffd700);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow:2px 2px 6px rgba(0,0,0,0.7);
+  text-shadow:2px 2px 5px rgba(0,0,0,0.7);
 }
 
 /* === CATEGORIES === */
@@ -101,17 +102,18 @@ body {
   display:flex;
   gap:8px;
   flex-wrap:wrap;
-  justify-content:center;
+  justify-content:flex-start;
   margin-bottom:20px;
+  width:100%;
 }
 .card-category {
-  padding:5px 15px;
+  padding:5px 14px;
   background: linear-gradient(135deg,#ff4500,#ffd700);
   border-radius:20px;
   cursor:pointer;
   color:#fff;
-  transition: transform 0.3s, background 0.3s;
   font-size:12px;
+  transition: transform 0.3s, background 0.3s;
 }
 .card-category:hover {
   background: linear-gradient(135deg,#ffd700,#ff4500);
@@ -124,37 +126,38 @@ body {
   grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
   gap:10px;
   width:100%;
-  max-width:500px; /* telefon ekraniga mos */
   margin-bottom:30px;
 }
 .similar-card {
-  border-radius:12px;
+  border-radius:10px;
   overflow:hidden;
   cursor:pointer;
   transition: transform 0.3s, box-shadow 0.3s;
   background:#1f1f1f;
-  box-shadow:0 6px 20px rgba(255,69,0,0.5);
+  box-shadow:0 5px 15px rgba(255,69,0,0.5);
   display:flex;
   flex-direction:column;
 }
 .similar-card img { width:100%; height:150px; object-fit:cover; transition: transform 0.3s; }
-.similar-card h3 { text-align:center; color:#ff4500; margin:5px; font-size:14px; }
-.similar-card:hover { transform:scale(1.05); box-shadow:0 12px 30px rgba(255,69,0,0.7); }
+.similar-card h3 { text-align:center; color:#ff4500; margin:5px; font-size:12px; }
+.similar-card:hover { transform:scale(1.05); box-shadow:0 10px 25px rgba(255,69,0,0.7); }
 .similar-card:hover img { transform:scale(1.05); }
 
-/* === RESPONSIVE === */
+/* === RESPONSIVE ADJUSTMENTS === */
 @media(max-width:768px){
-  .actor-card { width:80px; }
-  .actor-card img { height:110px; }
+  .actor-card { width:70px; }
+  .actor-card img { height:100px; }
   .actor-card h3 { font-size:11px; }
   #similar-movies { grid-template-columns:repeat(2,1fr); }
-  .player { max-width:100%; }
+  #movie-title { font-size:1.3rem; }
 }
 @media(max-width:480px){
-  .actor-card { width:70px; }
-  .actor-card img { height:90px; }
+  .actor-card { width:60px; }
+  .actor-card img { height:80px; }
   .actor-card h3 { font-size:10px; }
   #similar-movies { grid-template-columns:repeat(2,1fr); }
+  #movie-title { font-size:1.1rem; }
+  .card-category { font-size:10px; padding:4px 10px; }
 }
 </style>
 </head>
@@ -206,7 +209,7 @@ function renderMovie(){
   // Title
   titleEl.textContent = movie.title;
 
-  // Actors (chapdan)
+  // Actors
   actorsEl.innerHTML = "";
   movie.actors.forEach(a=>{
     const div = document.createElement("div");
