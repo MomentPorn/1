@@ -25,7 +25,8 @@ body {
   padding:10px 0;
   margin-bottom:20px;
   scroll-behavior:smooth;
-  justify-content:flex-start; /* chapga tekislash */
+  justify-content:flex-start; /* chapdan boshlab terish */
+  direction:ltr; /* scrollbar va elementlar chapdan o‘qilishi */
 }
 .actors-section::-webkit-scrollbar { height:8px; }
 .actors-section::-webkit-scrollbar-thumb {
@@ -205,7 +206,7 @@ function renderMovie(){
   // Title
   titleEl.textContent = movie.title;
 
-  // Actors
+  // Actors (chapdan)
   actorsEl.innerHTML = "";
   movie.actors.forEach(a=>{
     const div = document.createElement("div");
