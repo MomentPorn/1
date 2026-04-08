@@ -4,7 +4,7 @@ const movies = [
   {
     title: "Jennifer White Julio Gomez",
     thumbnail: "https://pbs.twimg.com/media/Den3nRSXkAA0SBh.jpg",
-    video: "https://cdn77-pr.pvvstream.pro/videos/720/-46863849_456239097.mp4?url=dmt2ZDM3NS5va2Nkbi5ydS8_ZXhwaXJlcz0xNzc1NzM5MzYwMjE3JnNyY0lwPTQ1Ljg0LjI4LjE4MiZwcj00MCZzcmNBZz1VTktOT1dOJm1zPTQ1LjEzNi4yMi4yMDgmdHlwZT0zJnNpZz1KSE5iZFlWaHJ6ayZjdD0wJnVybHM9MTg1LjIyNi41Mi4xNzImY2xpZW50VHlwZT0xNCZhcHBJZD01MTIwMDAzODQzOTcmaWQ9MzE1NTM0Njc4Njg5Ng&secure=JfU9e-krNxDd337sizTb2A%3D%3D%2C1775584223",
+    video: "https://1.ppembed.com/remote_control.php?time=1775675247&cv=783e49796005cddd259323797b89aa35&lr=0&cv2=9839e44ff6e6c4150478e28be9ec8493&file=%2Fcontents%2Fvideos%2F246000%2F246201%2F246201_h.mp4&cv3=87440b68a8805d45499130c8da754736&cv4=b1799ec91dcd289cb7a26d49e1accf3d",
     categories: ["Anal", "bbc", "dp"],
     actors: [
       { name: "Jennifer White", image: "https://i.pinimg.com/736x/88/79/b6/8879b6668a501d8682bbe91b85d3feac.jpg" },
@@ -14,7 +14,7 @@ const movies = [
   {
     title: "MILF Teacher Jennifer White Takes Her Students",
     thumbnail: "https://cdn.babehub.com/content/2404009/00150-01_1800.jpg",
-    video: "https://nvms14.cdn.privatehost.com/videos1/66000/66846/66846.mp4?&lra=5000k&c=11&exp_time=1775584571&sign=3b53e8d8bf5147cf3ed2d1485b282e52",
+    video: "https://cdn22.vids69.com/video/69/2/68125/68125.mp4",
     categories: ["Anal", "bbc", "dp"],
     actors: [
       { name: "Jennifer White", image: "https://i.pinimg.com/736x/88/79/b6/8879b6668a501d8682bbe91b85d3feac.jpg" },
