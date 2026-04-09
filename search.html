@@ -3,39 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MoonHub</title>
+<title>MoonHub Search</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 /* ===== BASE ===== */
 * { box-sizing: border-box; margin:0; padding:0; }
 body {
   font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background: linear-gradient(135deg, #0a0f2f, #000d1a 80%);
   color: #fff;
   min-height: 100vh;
-  padding: 20px 0;
+  padding: 20px 10px;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 h1 {
   text-align: center;
   font-size: 2rem;
   font-weight: 800;
-  background: linear-gradient(90deg, #ff6a00, #ee0979);
+  background: linear-gradient(90deg, #ff4500, #ffd700);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
   margin-bottom: 20px;
 }
 
-/* ===== SEARCH BAR ===== */
+/* SEARCH BAR */
 .search-bar {
   width: 90%;
   max-width: 400px;
   margin: 0 auto 20px auto;
   text-align: center;
 }
-
 .search-bar input {
   width: 100%;
   padding: 12px 16px;
@@ -49,14 +48,13 @@ h1 {
   transition: 0.3s;
 }
 .search-bar input::placeholder { color: #ccc; }
-
 .search-bar input:focus {
   background: rgba(255,255,255,0.1);
-  box-shadow: 0 6px 20px rgba(238,9,121,0.5);
+  box-shadow: 0 6px 20px rgba(255,69,0,0.5);
   transform: scale(1.02);
 }
 
-/* ===== HORIZONTAL SCROLL ===== */
+/* HORIZONTAL SCROLL */
 .horizontal-scroll {
   display: flex;
   overflow-x: auto;
@@ -64,13 +62,13 @@ h1 {
   padding: 10px 10px 20px 10px;
 }
 .horizontal-scroll::-webkit-scrollbar { height:6px; }
-.horizontal-scroll::-webkit-scrollbar-thumb { background: linear-gradient(45deg, #ff6a00, #ee0979); border-radius:4px; }
+.horizontal-scroll::-webkit-scrollbar-thumb { background: linear-gradient(45deg, #ff4500, #ffd700); border-radius:4px; }
 .horizontal-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
 
-/* ===== CARD STYLES ===== */
-.card {
-  flex: 0 0 auto;
-  background: linear-gradient(145deg, #1f1f1f, #2c2c2c);
+/* ACTOR CARD */
+.actor-card {
+  width: 120px;
+  background: linear-gradient(145deg, #1a1a1a, #222222);
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
@@ -78,47 +76,7 @@ h1 {
   display: flex;
   flex-direction: column;
   text-align: center;
-  color: #fff;
 }
-
-.card img {
-  width: 100%;
-  object-fit: cover;
-  border-bottom: 1px solid #333;
-  transition: transform 0.3s;
-}
-
-.card h3 {
-  margin: 5px 5px 2px 5px;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.card .subtitle {
-  font-size: 11px;
-  color: #ccc;
-  margin-bottom: 5px;
-}
-
-.card:hover {
-  transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 10px 30px rgba(238,9,121,0.5);
-}
-.card:hover img { transform: scale(1.05); }
-
-/* ===== ACTOR CARD ===== */
-.actor-card {
-  width: 120px;
-  background: linear-gradient(145deg, #1a1a1a, #222222);
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
 .actor-card img {
   width: 100%;
   height: 200px;
@@ -126,45 +84,92 @@ h1 {
   border-radius: 12px 12px 0 0;
   transition: transform 0.3s, box-shadow 0.3s;
 }
-
 .actor-card .actor-name {
   padding: 6px 0;
   font-size: 12px;
   font-weight: 600;
-  color: #ff6a00;
+  color: #ff4500;
   background: #1a1a1a;
 }
-
 .actor-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 14px 30px rgba(238,9,121,0.5);
+  box-shadow: 0 14px 30px rgba(255,69,0,0.5);
   background: linear-gradient(145deg, #222, #333);
-  color: #ff8a00;
+  color: #ffd700;
 }
 
-/* ===== GRID (Movie Results) ===== */
+/* MOVIE CARD */
 .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 18px;
+  justify-items: center;
+  padding: 0 10px 20px;
+}
+.card {
+  background: linear-gradient(145deg, #1f1f1f, #2c2c2c);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 0 10px 20px 10px;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.35s, box-shadow 0.35s;
+  border: 1px solid rgba(255,69,0,0.2);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+  transition: transform 0.35s;
+}
+.card h3 {
+  margin: -28px 10px 12px;
+  font-size: 14px;
+  text-align: center;
+  color: #ff4500;
+  background: rgba(0,0,0,0.6);
+  border-radius: 6px;
+  padding: 4px 6px;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+.card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 25px 60px rgba(255,69,0,0.7);
+}
+.card:hover img { transform: scale(1.05); }
+
+/* CATEGORY CARD */
+.category-card {
+  width: 90px;
+  background: linear-gradient(145deg, #1f1f1f, #2c2c2c);
+  border-radius: 12px;
+  text-align: center;
+  font-weight:600;
+  color:#ffd700;
+  padding:6px 0;
+  cursor:pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 14px 30px rgba(255,215,0,0.5);
 }
 
-.grid .card {
-  width: 45%;
-  height: 180px;
+/* RESPONSIVE */
+@media(max-width:768px){
+  .actor-card img { height:180px; }
+  .card img { height:180px; }
 }
-
 @media(max-width:480px){
-  h1 { font-size:1.6rem; }
-  .search-bar input { font-size:13px; padding:10px 12px; }
   .actor-card { width:100px; }
-  .actor-card img { height:160px; }
-  .grid .card { width:100%; height:150px; }
+  .actor-card img { height:140px; }
+  .card img { height:140px; }
   .card h3 { font-size:12px; }
-  .card .subtitle { font-size:10px; }
-  .actor-card .actor-name { font-size:11px; }
+  .category-card { width:70px; font-size:11px; }
 }
 </style>
 </head>
@@ -176,7 +181,6 @@ h1 {
   <input type="text" id="search" placeholder="Kino, kategoriya yoki aktyor qidirish...">
 </div>
 
-<!-- HORIZONTAL SCROLLS AND GRID -->
 <div class="horizontal-scroll" id="actors-results"></div>
 <div class="horizontal-scroll" id="categories-results"></div>
 <div class="grid" id="movies-results"></div>
@@ -194,14 +198,13 @@ function renderResults(){
   // Kino filter
   const filteredMovies = movies.filter(m =>
     m.title.toLowerCase().includes(q) ||
-    m.categories.some(c => c.toLowerCase().includes(q)) ||
     m.actors.some(a => a.name.toLowerCase().includes(q))
   );
   moviesContainer.innerHTML = "";
   filteredMovies.forEach(m => {
     const div = document.createElement("div");
     div.className = "card";
-    div.innerHTML = `<img src="${m.thumbnail}" alt="${m.title}"><h3>${m.title}</h3><div class="subtitle">${m.categories.join(", ")}</div>`;
+    div.innerHTML = `<img src="${m.thumbnail}" alt="${m.title}"><h3>${m.title}</h3>`;
     div.onclick = () => window.location.href=`list.html?id=${encodeURIComponent(m.title)}`;
     moviesContainer.appendChild(div);
   });
@@ -211,7 +214,7 @@ function renderResults(){
   actorsContainer.innerHTML = "";
   filteredActors.forEach(a => {
     const div = document.createElement("div");
-    div.className = "card actor-card";
+    div.className = "actor-card";
     div.innerHTML = `<img src="${a.image}" alt="${a.name}"><div class="actor-name">${a.name}</div>`;
     div.onclick = () => window.location.href=`actors.html?name=${encodeURIComponent(a.name)}`;
     actorsContainer.appendChild(div);
@@ -222,9 +225,8 @@ function renderResults(){
   categoriesContainer.innerHTML = "";
   filteredCategories.forEach(c => {
     const div = document.createElement("div");
-    div.className = "card";
-    div.style.width = "90px";
-    div.innerHTML = `<h3>${c}</h3>`;
+    div.className = "category-card";
+    div.textContent = c;
     div.onclick = () => window.location.href=`kategory.html?cat=${encodeURIComponent(c)}`;
     categoriesContainer.appendChild(div);
   });
