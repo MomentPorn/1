@@ -5,179 +5,164 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MoonHub</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
-/* ===== BASE ===== */
+/* === BASE STYLES === */
 * { box-sizing: border-box; margin:0; padding:0; }
 body {
   font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-  color: #fff;
-  min-height: 100vh;
-  padding: 20px 0;
+  background:#121212; 
+  color:#fff;
+  overflow-x:hidden;
 }
 
-/* ===== HEADER ===== */
+/* === HEADER === */
 h1 {
-  text-align: center;
-  font-size: 2.2rem;
-  font-weight: 800;
-  background: linear-gradient(90deg, #ff6a00, #ee0979);
+  text-align:center;
+  padding:20px;
+  font-size:2rem;
+  font-weight:800;
+  background: linear-gradient(90deg,#e50914,#ff4500);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
-  margin-bottom: 25px;
+  text-shadow:2px 2px 6px rgba(0,0,0,0.5);
+  margin-bottom:15px;
 }
 
-/* ===== SEARCH BAR ===== */
+/* === SEARCH BAR === */
 .search-bar {
-  width: 90%;
-  max-width: 600px;
-  margin: 0 auto 30px auto;
-  text-align: center;
+  width:90%;
+  max-width:600px;
+  margin:0 auto 30px auto;
+  text-align:center;
 }
-
 .search-bar input {
-  width: 100%;
-  padding: 15px 20px;
-  font-size: 16px;
-  border-radius: 30px;
-  border: none;
-  outline: none;
-  background: rgba(255,255,255,0.05);
-  color: #fff;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-  transition: 0.3s;
+  width:100%;
+  padding:14px 18px;
+  font-size:16px;
+  border-radius:30px;
+  border:none;
+  outline:none;
+  background:#1f1f1f;
+  color:#fff;
+  box-shadow:0 4px 12px rgba(0,0,0,0.6);
+  transition:0.3s;
 }
-.search-bar input::placeholder { color: #ccc; }
-
 .search-bar input:focus {
-  background: rgba(255,255,255,0.1);
-  box-shadow: 0 6px 25px rgba(255,105,180,0.5);
-  transform: scale(1.02);
+  background:#2a2a2a;
+  box-shadow:0 4px 20px rgba(255,69,0,0.7);
 }
 
-/* ===== HORIZONTAL SCROLL ===== */
+/* === HORIZONTAL SCROLL === */
 .horizontal-scroll {
-  display: flex;
-  overflow-x: auto;
-  gap: 18px;
-  padding: 10px 20px 25px 20px;
+  display:flex;
+  overflow-x:auto;
+  gap:15px;
+  padding:10px 20px 20px 20px;
+  scroll-behavior: smooth;
 }
-
-.horizontal-scroll::-webkit-scrollbar {
-  height: 8px;
-}
+.horizontal-scroll::-webkit-scrollbar { height:8px; }
 .horizontal-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #ff6a00, #ee0979);
-  border-radius: 5px;
+  background:#ff4500;
+  border-radius:4px;
 }
-.horizontal-scroll::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.05);
-}
+.horizontal-scroll::-webkit-scrollbar-track { background:#222; }
 
-/* ===== CARD STYLES ===== */
-.card {
-  flex: 0 0 auto;
-  background: linear-gradient(145deg, #1f1f1f, #2c2c2c);
-  border-radius: 16px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  color: #fff;
-}
-
-.card img {
-  width: 100%;
-  object-fit: cover;
-  border-bottom: 1px solid #333;
-  transition: transform 0.3s;
-}
-
-.card h3 {
-  margin: 6px 5px 2px 5px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.card .subtitle {
-  font-size: 12px;
-  color: #ccc;
-  margin-bottom: 6px;
-}
-
-.card:hover {
-  transform: scale(1.06) translateY(-3px);
-  box-shadow: 0 15px 35px rgba(238,9,121,0.5);
-}
-.card:hover img { transform: scale(1.08); }
-
-/* ===== ACTOR CARD ===== */
+/* === ACTOR CARD === */
 .actor-card {
-  width: 140px;
+  width:140px;
   background: linear-gradient(145deg, #1a1a1a, #222222);
-  border-radius: 16px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+  border-radius:16px;
+  overflow:hidden;
+  cursor:pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display:flex;
+  flex-direction:column;
+  text-align:center;
+  color:#fff;
 }
-
 .actor-card img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  border-radius: 12px 12px 0 0;
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:16px 16px 0 0;
   transition: transform 0.3s, box-shadow 0.3s;
 }
-
 .actor-card .actor-name {
-  padding: 8px 0;
-  font-size: 14px;
-  font-weight: 600;
-  color: #ff6a00;
-  background: #1a1a1a;
+  padding:8px 0;
+  font-size:14px;
+  font-weight:600;
+  color:#ff6a00;
+  background:#1a1a1a;
+  border-radius:0 0 16px 16px;
 }
-
 .actor-card:hover {
-  transform: scale(1.06);
-  box-shadow: 0 18px 40px rgba(238,9,121,0.5);
-  background: linear-gradient(145deg, #222, #333);
-  color: #ff8a00;
+  transform:scale(1.05);
+  box-shadow:0 12px 28px rgba(255,255,255,0.3);
 }
 
-/* ===== GRID (Movie Results) ===== */
+/* === MOVIE CARD === */
+.card {
+  flex:0 0 auto;
+  background: linear-gradient(145deg, #1f1f1f, #2c2c2c);
+  border-radius:16px;
+  overflow:hidden;
+  cursor:pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display:flex;
+  flex-direction:column;
+  text-align:center;
+  color:#fff;
+}
+.card img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-bottom:1px solid #333;
+  transition: transform 0.3s;
+  border-radius:16px 16px 0 0;
+}
+.card h3 {
+  margin:6px 5px 2px 5px;
+  font-size:14px;
+  font-weight:600;
+}
+.card .subtitle {
+  font-size:12px;
+  color:#ccc;
+  margin-bottom:6px;
+}
+.card:hover {
+  transform:scale(1.05);
+  box-shadow:0 15px 35px rgba(238,9,121,0.5);
+}
+.card:hover img { transform:scale(1.03); }
+
+/* === GRID FOR MOVIES === */
 .grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  padding: 0 20px 25px 20px;
-  justify-content: center;
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+  padding:0 20px 20px 20px;
+  justify-content:center;
 }
 
-.grid .card {
-  width: 160px;
-  height: 220px;
-}
-
-/* ===== RESPONSIVE ===== */
+/* === RESPONSIVE === */
 @media(max-width:1024px){
-  .actor-card img { height:220px; }
-  .grid .card { width:140px; height:200px; }
+  .actor-card img{ height:180px; }
+  .card img{ height:160px; }
+  .grid .card{ width:140px; }
 }
 @media(max-width:768px){
-  .grid{padding:20px;}
-  .actor-card img { height:200px; }
-  .grid .card { width:45%; height:180px; }
+  .actor-card img{ height:160px; }
+  .card img{ height:140px; }
+  .grid .card{ width:45%; }
 }
 @media(max-width:480px){
-  .grid .card { width:100%; height:160px; }
-  .actor-card img { height:160px; }
-  .search-bar input { font-size:14px; padding:10px 12px; }
+  .actor-card img{ height:140px; }
+  .card img{ height:120px; }
+  .grid .card{ width:100%; }
+  .search-bar input{ font-size:14px; padding:10px 12px; }
 }
 </style>
 </head>
@@ -189,9 +174,13 @@ h1 {
   <input type="text" id="search" placeholder="Kino, kategoriya yoki aktyor qidirish...">
 </div>
 
-<!-- HORIZONTAL SCROLLS AND GRID -->
+<!-- Aktyorlar -->
 <div class="horizontal-scroll" id="actors-results"></div>
+
+<!-- Kategoriyalar -->
 <div class="horizontal-scroll" id="categories-results"></div>
+
+<!-- Kinolar -->
 <div class="grid" id="movies-results"></div>
 
 <script src="data.js"></script>
@@ -214,8 +203,12 @@ function renderResults(){
   filteredMovies.forEach(m => {
     const div = document.createElement("div");
     div.className = "card";
-    div.innerHTML = `<img src="${m.thumbnail}" alt="${m.title}"><h3>${m.title}</h3><div class="subtitle">${m.categories.join(", ")}</div>`;
-    div.onclick = () => window.location.href=`list.html?id=${encodeURIComponent(m.title)}`;
+    div.innerHTML = `
+      <img src="${m.thumbnail}" alt="${m.title}">
+      <h3>${m.title}</h3>
+      <div class="subtitle">${m.categories.join(", ")}</div>
+    `;
+    div.onclick = () => window.location.href=`list.html?id=${m.title}`;
     moviesContainer.appendChild(div);
   });
 
@@ -225,7 +218,10 @@ function renderResults(){
   filteredActors.forEach(a => {
     const div = document.createElement("div");
     div.className = "card actor-card";
-    div.innerHTML = `<img src="${a.image}" alt="${a.name}"><div class="actor-name">${a.name}</div>`;
+    div.innerHTML = `
+      <img src="${a.image}" alt="${a.name}">
+      <div class="actor-name">${a.name}</div>
+    `;
     div.onclick = () => window.location.href=`actors.html?name=${encodeURIComponent(a.name)}`;
     actorsContainer.appendChild(div);
   });
@@ -236,19 +232,15 @@ function renderResults(){
   filteredCategories.forEach(c => {
     const div = document.createElement("div");
     div.className = "card";
-    div.style.width = "110px";
+    div.style.width = "100px";
     div.innerHTML = `<h3>${c}</h3>`;
     div.onclick = () => window.location.href=`kategory.html?cat=${encodeURIComponent(c)}`;
     categoriesContainer.appendChild(div);
   });
 }
 
-// Input event
 searchInput.addEventListener("input", renderResults);
-
-// Boshlang‘ich holatda barcha natijalar
 renderResults();
 </script>
-
 </body>
 </html>
