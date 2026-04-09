@@ -76,11 +76,11 @@ h1 {
   flex-direction: column;
   color: #fff;
   width: 48%;
-  height: 280px; /* yanada uzun qilindi */
+  height: 180px; /* kompyuterda balandlik */
 }
 .movie-card img {
   width: 100%;
-  height: 200px; /* rasm balandligi oshirildi */
+  height: 140px; /* rasm balandligi kompyuterda */
   object-fit: cover;
   transition: transform 0.3s ease;
 }
@@ -117,10 +117,11 @@ h1 {
   display: flex;
   flex-direction: column;
   text-align: center;
+  height: 220px; /* kompyuter */
 }
 .actor-card img {
   width: 100%;
-  height: 240px; /* <--- rasm balandligi kattalashtirildi */
+  height: 180px; /* kompyuter */
   object-fit: cover;
   border-radius: 12px 12px 0 0;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -162,12 +163,11 @@ h1 {
   h1 { font-size:1.5rem; }
   .search-bar input { font-size:13px; padding:10px 12px; }
 
-  .movie-card { width:100%; height:240px; }
-  .movie-card img { height:180px; }
-  .movie-card .info h3 { font-size:14px; }
+  .movie-card { width:100%; height:240px; } /* telefonlar uchun uzaytirildi */
+  .movie-card img { height:200px; }
 
-  .actor-card { width:100px; }
-  .actor-card img { height:180px; } /* telefon uchun kichiklashtirildi */
+  .actor-card { width:100px; height:280px; } /* telefonlar uchun uzaytirildi */
+  .actor-card img { height:240px; }
   .actor-card .actor-name { font-size:10px; }
 
   .category-card { width:60px; font-size:10px; }
