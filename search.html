@@ -6,7 +6,6 @@
 <title>MoonHub</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-/* ===== BASE ===== */
 * { box-sizing: border-box; margin:0; padding:0; }
 body {
   font-family: 'Montserrat', sans-serif;
@@ -15,8 +14,6 @@ body {
   min-height: 100vh;
   padding: 20px 0;
 }
-
-/* ===== HEADER ===== */
 h1 {
   text-align: center;
   font-size: 2rem;
@@ -27,8 +24,6 @@ h1 {
   text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
   margin-bottom: 20px;
 }
-
-/* ===== SEARCH BAR ===== */
 .search-bar {
   width: 90%;
   max-width: 400px;
@@ -53,8 +48,6 @@ h1 {
   box-shadow: 0 6px 20px rgba(238,9,121,0.5);
   transform: scale(1.02);
 }
-
-/* ===== HORIZONTAL SCROLL ===== */
 .horizontal-scroll {
   display: flex;
   overflow-x: auto;
@@ -64,8 +57,6 @@ h1 {
 .horizontal-scroll::-webkit-scrollbar { height:6px; }
 .horizontal-scroll::-webkit-scrollbar-thumb { background: linear-gradient(45deg, #ff6a00, #ee0979); border-radius:4px; }
 .horizontal-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
-
-/* ===== MOVIE CARD ===== */
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -83,103 +74,51 @@ h1 {
   flex-direction: column;
   color: #fff;
   width: 48%;
-  height: 200px;
+  height: 220px;
 }
 .movie-card img {
   width: 100%;
-  height: 120px;
+  height: 160px;
   object-fit: cover;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
   transition: transform 0.3s ease;
 }
-.movie-card h3 {
-  margin: 8px 5px 2px;
-  font-size: 14px;
-  text-align: center;
-  color: #1e90ff;
-  font-weight: 600;
+.movie-card .info {
+  padding: 8px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.movie-card .subtitle {
-  font-size: 12px;
-  color: #ccc;
+.movie-card .info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e90ff;
   text-align: center;
-  margin: 2px 5px 8px;
 }
 .movie-card:hover {
   transform: translateY(-6px) scale(1.03);
   box-shadow: 0 20px 50px rgba(30,144,255,0.6);
 }
 .movie-card:hover img { transform: scale(1.05); }
-
-/* ===== ACTOR CARD ===== */
-.actor-card {
-  width: 120px; /* horizontal scroll uchun kengligi biroz katta */
-  min-width: 120px; /* scrollda juda kichik bo‘lishini oldini oladi */
-  background: linear-gradient(145deg, #1a1a1a, #222222);
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-.actor-card img {
-  width: 100%;
-  height: 180px; /* balandlikni biroz pasaytirdik */
-  object-fit: cover;
-  border-radius: 12px 12px 0 0;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.actor-card .actor-name {
-  padding: 6px 0;
-  font-size: 12px; /* fontni normal holatda saqladik */
-  font-weight: 600;
-  color: #ff6a00;
-  background: #1a1a1a;
-}
-.actor-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 28px rgba(238,9,121,0.5);
-  background: linear-gradient(145deg, #222, #333);
-  color: #ff8a00;
-}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:480px){
-  .actor-card { width: 120px; min-width: 120px; } /* mobilda ham narmal kenglik */
-  .actor-card img { height:160px; } /* balandlikni moslash */
-  .actor-card .actor-name { font-size:11px; }
-}
-
-/* ===== CATEGORY CARD ===== */
-.category-card {
-  width: 70px;
-  background: linear-gradient(145deg, #1a1f3a, #101426);
-  border-radius: 12px;
-  text-align: center;
-  font-weight:600;
-  color:#ffd700;
-  padding:5px 0;
-  cursor:pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.category-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(255,215,0,0.5);
-}
-
-/* ===== RESPONSIVE ===== */
+/* ACTOR CARD */
+.actor-card { width: 120px; min-width: 120px; background: linear-gradient(145deg, #1a1a1a, #222222); border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s, background 0.3s; display: flex; flex-direction: column; text-align: center; }
+.actor-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px 12px 0 0; transition: transform 0.3s, box-shadow 0.3s; }
+.actor-card .actor-name { padding: 6px 0; font-size: 12px; font-weight: 600; color: #ff6a00; background: #1a1a1a; }
+.actor-card:hover { transform: scale(1.05); box-shadow: 0 12px 28px rgba(238,9,121,0.5); background: linear-gradient(145deg, #222, #333); color: #ff8a00; }
+/* CATEGORY CARD */
+.category-card { width: 70px; background: linear-gradient(145deg, #1a1f3a, #101426); border-radius: 12px; text-align: center; font-weight:600; color:#ffd700; padding:5px 0; cursor:pointer; transition: transform 0.3s, box-shadow 0.3s; }
+.category-card:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(255,215,0,0.5); }
+/* RESPONSIVE */
 @media(max-width:480px){
   h1 { font-size:1.5rem; }
   .search-bar input { font-size:13px; padding:10px 12px; }
   .actor-card { width:90px; }
   .actor-card img { height:140px; }
-  .movie-card { width:100%; height:160px; }
-  .movie-card img { height:100px; }
-  .movie-card h3 { font-size:12px; }
-  .movie-card .subtitle { font-size:10px; }
   .actor-card .actor-name { font-size:10px; }
+  .movie-card { width:100%; height:200px; }
+  .movie-card img { height:140px; }
+  .movie-card .info h3 { font-size:14px; }
   .category-card { width:60px; font-size:10px; }
 }
 </style>
@@ -189,7 +128,7 @@ h1 {
 <h1>🎬 MoonHub</h1>
 
 <div class="search-bar">
-  <input type="text" id="search" placeholder="Kino, kategoriya yoki aktyor qidirish...">
+  <input type="text" id="search" placeholder="Kino yoki aktyor qidirish...">
 </div>
 
 <div class="horizontal-scroll" id="actors-results"></div>
@@ -209,14 +148,18 @@ function renderResults(){
   // Kino filter
   const filteredMovies = movies.filter(m =>
     m.title.toLowerCase().includes(q) ||
-    m.categories.some(c => c.toLowerCase().includes(q)) ||
     m.actors.some(a => a.name.toLowerCase().includes(q))
   );
   moviesContainer.innerHTML = "";
   filteredMovies.forEach(m => {
     const div = document.createElement("div");
     div.className = "movie-card";
-    div.innerHTML = `<img src="${m.thumbnail}" alt="${m.title}"><h3>${m.title}</h3><div class="subtitle">${m.categories.join(", ")}</div>`;
+    div.innerHTML = `
+      <img src="${m.thumbnail}" alt="${m.title}">
+      <div class="info">
+        <h3>${m.title}</h3>
+      </div>
+    `;
     div.onclick = () => window.location.href=`list.html?id=${encodeURIComponent(m.title)}`;
     moviesContainer.appendChild(div);
   });
@@ -232,7 +175,7 @@ function renderResults(){
     actorsContainer.appendChild(div);
   });
 
-  // Kategoriya filter
+  // Kategoriya filter (agar xohlamasangiz, ushbu qismini olib tashlashingiz mumkin)
   const filteredCategories = categoriesList.filter(c => c.toLowerCase().includes(q));
   categoriesContainer.innerHTML = "";
   filteredCategories.forEach(c => {
