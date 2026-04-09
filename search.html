@@ -102,23 +102,39 @@ h1 {
 }
 .movie-card:hover img { transform: scale(1.05); }
 
-/* ACTOR CARD */
-.actor-card { 
-  width: 100px; 
-  min-width: 100px; 
-  background: linear-gradient(145deg, #1a1a1a, #222222); 
-  border-radius: 12px; 
-  overflow: hidden; 
-  cursor: pointer; 
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s; 
-  display: flex; 
-  flex-direction: column; 
-  text-align: center; 
+/* ===== ACTOR CARD ===== */
+.actor-card {
+  width: 120px; /* horizontal scroll uchun kengligi biroz katta */
+  min-width: 120px; /* scrollda juda kichik bo‘lishini oldini oladi */
+  background: linear-gradient(145deg, #1a1a1a, #222222);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
-.actor-card img { width: 100%; height: 140px; object-fit: cover; border-radius: 12px 12px 0 0; transition: transform 0.3s, box-shadow 0.3s; }
-.actor-card .actor-name { padding: 5px 0; font-size: 11px; font-weight: 600; color: #ff6a00; background: #1a1a1a; }
-.actor-card:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(238,9,121,0.5); background: linear-gradient(145deg, #222, #333); color: #ff8a00; }
-
+.actor-card img {
+  width: 100%;
+  height: 180px; /* balandlikni biroz pasaytirdik */
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.actor-card .actor-name {
+  padding: 6px 0;
+  font-size: 12px; /* fontni normal holatda saqladik */
+  font-weight: 600;
+  color: #ff6a00;
+  background: #1a1a1a;
+}
+.actor-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 28px rgba(238,9,121,0.5);
+  background: linear-gradient(145deg, #222, #333);
+  color: #ff8a00;
+}
 /* RESPONSIVE */
 @media(max-width:480px){
   h1 { font-size:1.5rem; }
