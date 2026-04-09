@@ -150,7 +150,7 @@ function renderActorMovies(){
       <h3>${m.title}</h3>
       <div class="subtitle">${m.categories.join(", ")}</div>
     `;
-    div.onclick = () => window.location.href = `list.html?id=${m.id}`;
+    div.onclick = () => window.location.href = `list.html?id=${encodeURIComponent(m.title)}`;
     container.appendChild(div);
   });
 }
