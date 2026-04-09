@@ -3,169 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MoonHub Search</title>
+<title>MoonHub</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+/* ===== BASE ===== */
 * { box-sizing: border-box; margin:0; padding:0; }
 body {
   font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(135deg, #0a0f2f, #000d1a 80%);
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
   color: #fff;
   min-height: 100vh;
-  padding: 15px 5px;
+  padding: 20px 0;
 }
 
-/* HEADER */
+/* ===== HEADER ===== */
 h1 {
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 800;
-  background: linear-gradient(90deg, #ff4500, #ffd700);
+  background: linear-gradient(90deg, #ff6a00, #ee0979);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-  margin-bottom: 15px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+  margin-bottom: 20px;
 }
 
-/* SEARCH BAR */
+/* ===== SEARCH BAR ===== */
 .search-bar {
-  width: 95%;
-  max-width: 350px;
-  margin: 0 auto 15px auto;
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto 20px auto;
   text-align: center;
 }
 .search-bar input {
   width: 100%;
-  padding: 10px 14px;
-  font-size: 13px;
+  padding: 12px 16px;
+  font-size: 14px;
   border-radius: 25px;
   border: none;
   outline: none;
   background: rgba(255,255,255,0.05);
   color: #fff;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
   transition: 0.3s;
 }
 .search-bar input::placeholder { color: #ccc; }
 .search-bar input:focus {
   background: rgba(255,255,255,0.1);
-  box-shadow: 0 5px 18px rgba(255,69,0,0.5);
+  box-shadow: 0 6px 20px rgba(238,9,121,0.5);
   transform: scale(1.02);
 }
 
-/* HORIZONTAL SCROLL */
+/* ===== HORIZONTAL SCROLL ===== */
 .horizontal-scroll {
   display: flex;
   overflow-x: auto;
   gap: 12px;
-  padding: 8px 5px 18px 5px;
+  padding: 10px 10px 20px 10px;
 }
-.horizontal-scroll::-webkit-scrollbar { height:5px; }
-.horizontal-scroll::-webkit-scrollbar-thumb { background: linear-gradient(45deg, #ff4500, #ffd700); border-radius:3px; }
+.horizontal-scroll::-webkit-scrollbar { height:6px; }
+.horizontal-scroll::-webkit-scrollbar-thumb { background: linear-gradient(45deg, #ff6a00, #ee0979); border-radius:4px; }
 .horizontal-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
 
-/* ACTOR CARD */
+/* ===== MOVIE CARD ===== */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 10px 20px 10px;
+  justify-content: center;
+}
+.movie-card {
+  background: linear-gradient(145deg, #1a1f3a, #101426);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  width: 48%;
+  height: 200px;
+}
+.movie-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: transform 0.3s ease;
+}
+.movie-card h3 {
+  margin: 8px 5px 2px;
+  font-size: 14px;
+  text-align: center;
+  color: #1e90ff;
+  font-weight: 600;
+}
+.movie-card .subtitle {
+  font-size: 12px;
+  color: #ccc;
+  text-align: center;
+  margin: 2px 5px 8px;
+}
+.movie-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(30,144,255,0.6);
+}
+.movie-card:hover img { transform: scale(1.05); }
+
+/* ===== ACTOR CARD ===== */
 .actor-card {
-  width: 100px;
+  width: 120px; /* horizontal scroll uchun kengligi biroz katta */
+  min-width: 120px; /* scrollda juda kichik bo‘lishini oldini oladi */
   background: linear-gradient(145deg, #1a1a1a, #222222);
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 .actor-card img {
   width: 100%;
-  height: 140px;
+  height: 180px; /* balandlikni biroz pasaytirdik */
   object-fit: cover;
   border-radius: 12px 12px 0 0;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .actor-card .actor-name {
-  padding: 5px 0;
-  font-size: 11px;
+  padding: 6px 0;
+  font-size: 12px; /* fontni normal holatda saqladik */
   font-weight: 600;
-  color: #ff4500;
+  color: #ff6a00;
   background: #1a1a1a;
 }
 .actor-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 25px rgba(255,69,0,0.5);
+  box-shadow: 0 12px 28px rgba(238,9,121,0.5);
   background: linear-gradient(145deg, #222, #333);
-  color: #ffd700;
+  color: #ff8a00;
 }
 
-/* MOVIE CARD */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 12px;
-  justify-items: center;
-  padding: 0 5px 15px;
+/* ===== RESPONSIVE ===== */
+@media(max-width:480px){
+  .actor-card { width: 120px; min-width: 120px; } /* mobilda ham narmal kenglik */
+  .actor-card img { height:160px; } /* balandlikni moslash */
+  .actor-card .actor-name { font-size:11px; }
 }
-.card {
-  background: linear-gradient(145deg, #1f1f1f, #2c2c2c);
-  border-radius: 14px;
-  overflow: hidden;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.35s, box-shadow 0.35s;
-  border: 1px solid rgba(255,69,0,0.2);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-}
-.card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 14px 14px 0 0;
-  transition: transform 0.35s;
-}
-.card h3 {
-  margin: -24px 8px 8px;
-  font-size: 12px;
-  text-align: center;
-  color: #ff4500;
-  background: rgba(0,0,0,0.5);
-  border-radius: 5px;
-  padding: 3px 5px;
-  font-weight: 600;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
-}
-.card:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 18px 40px rgba(255,69,0,0.6);
-}
-.card:hover img { transform: scale(1.05); }
 
-/* CATEGORY CARD */
+/* ===== CATEGORY CARD ===== */
 .category-card {
   width: 70px;
-  background: linear-gradient(145deg, #1f1f1f, #2c2c2c);
+  background: linear-gradient(145deg, #1a1f3a, #101426);
   border-radius: 12px;
   text-align: center;
   font-weight:600;
   color:#ffd700;
-  padding:4px 0;
+  padding:5px 0;
   cursor:pointer;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .category-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 25px rgba(255,215,0,0.5);
+  box-shadow: 0 10px 20px rgba(255,215,0,0.5);
 }
 
-/* RESPONSIVE */
+/* ===== RESPONSIVE ===== */
 @media(max-width:480px){
   h1 { font-size:1.5rem; }
-  .search-bar input { font-size:12px; padding:8px 10px; }
+  .search-bar input { font-size:13px; padding:10px 12px; }
   .actor-card { width:90px; }
-  .actor-card img { height:120px; }
-  .card img { height:120px; }
-  .card h3 { font-size:11px; }
+  .actor-card img { height:140px; }
+  .movie-card { width:100%; height:160px; }
+  .movie-card img { height:100px; }
+  .movie-card h3 { font-size:12px; }
+  .movie-card .subtitle { font-size:10px; }
+  .actor-card .actor-name { font-size:10px; }
   .category-card { width:60px; font-size:10px; }
 }
 </style>
@@ -195,13 +209,14 @@ function renderResults(){
   // Kino filter
   const filteredMovies = movies.filter(m =>
     m.title.toLowerCase().includes(q) ||
+    m.categories.some(c => c.toLowerCase().includes(q)) ||
     m.actors.some(a => a.name.toLowerCase().includes(q))
   );
   moviesContainer.innerHTML = "";
   filteredMovies.forEach(m => {
     const div = document.createElement("div");
-    div.className = "card";
-    div.innerHTML = `<img src="${m.thumbnail}" alt="${m.title}"><h3>${m.title}</h3>`;
+    div.className = "movie-card";
+    div.innerHTML = `<img src="${m.thumbnail}" alt="${m.title}"><h3>${m.title}</h3><div class="subtitle">${m.categories.join(", ")}</div>`;
     div.onclick = () => window.location.href=`list.html?id=${encodeURIComponent(m.title)}`;
     moviesContainer.appendChild(div);
   });
