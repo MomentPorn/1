@@ -64,6 +64,8 @@ h1 {
   padding: 0 10px 20px 10px;
   justify-content: center;
 }
+
+/* MOVIE CARD */
 .movie-card {
   background: linear-gradient(145deg, #1a1f3a, #101426);
   border-radius: 12px;
@@ -74,11 +76,11 @@ h1 {
   flex-direction: column;
   color: #fff;
   width: 48%;
-  height: 220px;
+  height: 250px; /* biroz uzun qilindi */
 }
 .movie-card img {
   width: 100%;
-  height: 160px;
+  height: 180px; /* rasm balandligi oshirildi */
   object-fit: cover;
   transition: transform 0.3s ease;
 }
@@ -95,30 +97,79 @@ h1 {
   font-weight: 600;
   color: #1e90ff;
   text-align: center;
+  line-height: 1.2;
 }
 .movie-card:hover {
   transform: translateY(-6px) scale(1.03);
   box-shadow: 0 20px 50px rgba(30,144,255,0.6);
 }
 .movie-card:hover img { transform: scale(1.05); }
+
 /* ACTOR CARD */
-.actor-card { width: 120px; min-width: 120px; background: linear-gradient(145deg, #1a1a1a, #222222); border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s, background 0.3s; display: flex; flex-direction: column; text-align: center; }
-.actor-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px 12px 0 0; transition: transform 0.3s, box-shadow 0.3s; }
-.actor-card .actor-name { padding: 6px 0; font-size: 12px; font-weight: 600; color: #ff6a00; background: #1a1a1a; }
-.actor-card:hover { transform: scale(1.05); box-shadow: 0 12px 28px rgba(238,9,121,0.5); background: linear-gradient(145deg, #222, #333); color: #ff8a00; }
+.actor-card {
+  width: 120px;
+  min-width: 120px;
+  background: linear-gradient(145deg, #1a1a1a, #222222);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.actor-card img {
+  width: 100%;
+  height: 200px; /* kattaroq qilib bosh kesilishini oldini oldik */
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.actor-card .actor-name {
+  padding: 6px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ff6a00;
+  background: #1a1a1a;
+  line-height: 1.2;
+}
+.actor-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 28px rgba(238,9,121,0.5);
+  background: linear-gradient(145deg, #222, #333);
+  color: #ff8a00;
+}
+
 /* CATEGORY CARD */
-.category-card { width: 70px; background: linear-gradient(145deg, #1a1f3a, #101426); border-radius: 12px; text-align: center; font-weight:600; color:#ffd700; padding:5px 0; cursor:pointer; transition: transform 0.3s, box-shadow 0.3s; }
-.category-card:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(255,215,0,0.5); }
+.category-card {
+  width: 70px;
+  background: linear-gradient(145deg, #1a1f3a, #101426);
+  border-radius: 12px;
+  text-align: center;
+  font-weight:600;
+  color:#ffd700;
+  padding:5px 0;
+  cursor:pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(255,215,0,0.5);
+}
+
 /* RESPONSIVE */
 @media(max-width:480px){
   h1 { font-size:1.5rem; }
   .search-bar input { font-size:13px; padding:10px 12px; }
-  .actor-card { width:90px; }
-  .actor-card img { height:140px; }
-  .actor-card .actor-name { font-size:10px; }
-  .movie-card { width:100%; height:200px; }
-  .movie-card img { height:140px; }
+
+  .movie-card { width:100%; height:220px; }
+  .movie-card img { height:160px; }
   .movie-card .info h3 { font-size:14px; }
+
+  .actor-card { width:100px; }
+  .actor-card img { height:160px; }
+  .actor-card .actor-name { font-size:10px; }
+
   .category-card { width:60px; font-size:10px; }
 }
 </style>
@@ -175,7 +226,7 @@ function renderResults(){
     actorsContainer.appendChild(div);
   });
 
-  // Kategoriya filter (agar xohlamasangiz, ushbu qismini olib tashlashingiz mumkin)
+  // Kategoriya filter
   const filteredCategories = categoriesList.filter(c => c.toLowerCase().includes(q));
   categoriesContainer.innerHTML = "";
   filteredCategories.forEach(c => {
