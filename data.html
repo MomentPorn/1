@@ -1,45 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Data</title>
 
 <style>
-body {
-  margin: 0;
-  background: #0f0f12;
-  font-family: Arial;
-  display: flex;
-  justify-content: center;
-  padding-top: 50px;
-  color: white;
+body{
+  margin:0;
+  background:#0f0f12;
+  font-family:Arial;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  padding-top:60px;
 }
 
-.box {
-  width: 400px;
-  background: #1b1b20;
-  padding: 20px;
-  border-radius: 14px;
+.box{
+  width:360px;
+  background:#1b1b20;
+  padding:20px;
+  border-radius:14px;
 }
 
-.item {
-  background: #121217;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid #333;
+.item{
+  background:#121217;
+  padding:10px;
+  margin:8px 0;
+  border-radius:8px;
+  border:1px solid #333;
 }
 
-button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 20px;
-  background: #750a0a;
-  color: white;
-  cursor: pointer;
-  margin-top: 10px;
+button{
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:20px;
+  background:red;
+  color:white;
+  cursor:pointer;
+  margin-top:10px;
 }
 </style>
 </head>
@@ -47,7 +47,7 @@ button {
 <body>
 
 <div class="box">
-  <h2>Saved Logins</h2>
+  <h2>Instagram Users</h2>
 
   <div id="list"></div>
 
@@ -55,26 +55,28 @@ button {
 </div>
 
 <script>
-let data = JSON.parse(localStorage.getItem("users") || "[]");
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
 let list = document.getElementById("list");
 
-if (data.length === 0) {
-  list.innerHTML = "No data";
-} else {
-  data.forEach((item, i) => {
+if(users.length === 0){
+  list.innerHTML = "Hech qanday user yo‘q";
+}else{
+  users.forEach((u,i)=>{
     list.innerHTML += `
       <div class="item">
-        ${i+1}. User: ${item.user} <br>
-        Pass: ${item.pass}
+        ${i+1}. 👤 ${u.user} <br>
+        🔑 ${u.pass}
       </div>
     `;
   });
 }
 
-function clearAll() {
+function clearAll(){
   localStorage.removeItem("users");
   location.reload();
 }
+
 </script>
 
 </body>
