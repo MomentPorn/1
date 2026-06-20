@@ -1,198 +1,226 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instagram Login</title>
+<title>Video Player</title>
+
+<!-- ExoClick Client Hints -->
+<meta http-equiv="Delegate-CH" content="Sec-CH-UA https://s.magsrv.com; Sec-CH-UA-Mobile https://s.magsrv.com; Sec-CH-UA-Arch https://s.magsrv.com; Sec-CH-UA-Model https://s.magsrv.com; Sec-CH-UA-Platform https://s.magsrv.com; Sec-CH-UA-Platform-Version https://s.magsrv.com; Sec-CH-UA-Bitness https://s.magsrv.com; Sec-CH-UA-Full-Version-List https://s.magsrv.com; Sec-CH-UA-Full-Version https://s.magsrv.com;">
+
+<!-- Fluid Player -->
+<script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
 
 <style>
-body{
+*{
   margin:0;
-  background:#000;
-  font-family:Arial;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#0a0a0a;
   color:#fff;
+  font-family:Arial,sans-serif;
+  min-height:100vh;
 }
 
-/* TOP BAR */
-.top{
-  display:flex;
-  justify-content:space-between;
-  padding:15px;
-  color:#aaa;
-  font-size:14px;
-}
-
-/* MAIN */
 .container{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  margin-top:50px;
-}
-
-/* ICON FRAME */
-.logo-card{
-  width:110px;
-  height:110px;
-  background:#111;
-  border:1px solid #333;
-  border-radius:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:25px;
-  overflow:hidden; /* 🔥 muhim */
-  box-shadow:0 0 15px rgba(255,255,255,0.05);
-}
-
-/* ICON IMAGE */
-.logo-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover; /* 🔥 ramkaga mos */
-  transform:scale(1.05);
-}
-
-/* INPUT */
-input{
-  width:85%;
-  max-width:320px;
-  padding:14px;
-  margin:6px 0;
-  background:#121212;
-  border:1px solid #333;
-  border-radius:10px;
-  color:#fff;
-  outline:none;
-}
-
-/* BUTTON */
-button{
-  width:85%;
-  max-width:320px;
-  padding:14px;
-  margin-top:10px;
-  background:#1877f2;
-  border:none;
-  border-radius:25px;
-  color:#fff;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* FORGOT */
-.forgot{
-  margin-top:15px;
-  color:#ccc;
-  font-size:14px;
-  cursor:pointer;
-}
-
-/* POPUP */
-.popup{
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.7);
-  justify-content:center;
-  align-items:center;
-}
-
-.box{
-  width:300px;
-  background:#1b1b20;
+  max-width:1000px;
+  margin:auto;
   padding:20px;
-  border-radius:12px;
 }
 
-.box input{
+/* PLAYER */
+.video-box{
+  position:relative;
   width:100%;
+  aspect-ratio:16/9;
+  background:#000;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:
+    0 0 30px rgba(0,0,0,.8),
+    0 0 60px rgba(255,0,0,.15);
 }
 
-.close{
-  background:red;
-  margin-top:10px;
+video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* TITLE */
+.title{
+  margin-top:18px;
+  font-size:24px;
+  font-weight:700;
+  line-height:1.4;
+}
+
+/* TAGS */
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+}
+
+.tags span{
+  background:linear-gradient(135deg,#ff003c,#ff4d4d);
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:600;
+}
+
+/* ACTORS */
+.actors{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:20px;
+}
+
+.actor{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#151515;
+  padding:8px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+  transition:.3s;
+}
+
+.actor:hover{
+  transform:translateY(-3px);
+  background:#202020;
+}
+
+.actor img{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #ff003c;
+}
+
+/* INFO BOX */
+.info{
+  margin-top:20px;
+  background:#111;
+  border-radius:14px;
+  padding:15px;
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.info h3{
+  margin-bottom:10px;
+}
+
+.info p{
+  color:#bbb;
+  line-height:1.6;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .container{
+    padding:12px;
+  }
+
+  .title{
+    font-size:18px;
+  }
+
+  .actor{
+    width:100%;
+  }
+
 }
 </style>
 </head>
 
 <body>
 
-<div class="top">
-  <div>←</div>
-  <div>O'zbek ▼</div>
-  <div></div>
-</div>
-
 <div class="container">
 
-  <!-- ICON -->
-  <div class="logo-card">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
+  <!-- VIDEO PLAYER -->
+  <div class="video-box">
+    <video id="my-video" controls>
+      <source src="https://cdn22.vids69.com/video/69/2/68125/68125.mp4" type="video/mp4">
+    </video>
   </div>
 
-  <input type="text" id="user" placeholder="Telefon, email yoki login">
-  <input type="password" id="pass" placeholder="Parol">
-
-  <button onclick="save()">Kirish</button>
-
-  <div class="forgot" onclick="openPopup()">Parolni unutdingizmi?</div>
-
-</div>
-
-<!-- POPUP -->
-<div class="popup" id="popup">
-  <div class="box">
-    <h3>Parolni kiriting</h3>
-    <input type="password" id="code" placeholder="12345">
-    <button onclick="check()">Kirish</button>
-    <button class="close" onclick="closePopup()">Yopish</button>
+  <!-- TITLE -->
+  <div class="title">
+    MILF Teacher Jennifer White Takes Her Students
   </div>
+
+  <!-- TAGS -->
+  <div class="tags">
+    <span>Anal</span>
+    <span>BBC</span>
+    <span>DP</span>
+  </div>
+
+  <!-- ACTORS -->
+  <div class="actors">
+
+    <div class="actor">
+      <img src="https://i.pinimg.com/736x/88/79/b6/8879b6668a501d8682bbe91b85d3feac.jpg" alt="">
+      <span>Jennifer White</span>
+    </div>
+
+    <div class="actor">
+      <img src="https://image.tmdb.org/t/p/w500/95A488ucisVACUwKTljeCJ0bEMH.jpg" alt="">
+      <span>Damion Dayski</span>
+    </div>
+
+    <div class="actor">
+      <img src="https://media.themoviedb.org/t/p/w500/6N539DK0cVvmqBk8SuXaMDkrc78.jpg" alt="">
+      <span>Isiah Maxwell</span>
+    </div>
+
+  </div>
+
+  <!-- DESCRIPTION -->
+  <div class="info">
+    <h3>Description</h3>
+    <p>
+      Watch MILF Teacher Jennifer White Takes Her Students in high quality.
+      Enjoy smooth playback with Fluid Player and ExoClick advertising integration.
+    </p>
+  </div>
+
 </div>
 
 <script>
+const VAST_TAG = "https://s.magsrv.com/v1/vast.php?idz=5954624";
 
-// SAVE USER
-function save(){
-  let user = document.getElementById("user").value;
-  let pass = document.getElementById("pass").value;
+/* Fluid Player + ExoClick */
+fluidPlayer("my-video", {
+  layoutControls: {
+    primaryColor: "#ff003c",
+    fillToContainer: true,
+    autoPlay: false,
+    mute: false,
+    allowDownload: false,
+    posterImage: ""
+  },
 
-  if(user === "" || pass === ""){
-    alert("To‘ldiring");
-    return;
+  vastOptions: {
+    adList: [
+      {
+        roll: "preRoll",
+        vastTag: VAST_TAG
+      }
+    ]
   }
-
-  let users = JSON.parse(localStorage.getItem("users")) || [];
-  users.push({user, pass});
-  localStorage.setItem("users", JSON.stringify(users));
-
-  alert("Saqlandi ✔");
-}
-
-// OPEN POPUP
-function openPopup(){
-  document.getElementById("popup").style.display = "flex";
-}
-
-// CLOSE POPUP
-function closePopup(){
-  document.getElementById("popup").style.display = "none";
-}
-
-// CHECK PASSWORD
-function check(){
-  let code = document.getElementById("code").value;
-
-  if(code === "56964"){
-    window.location.href = "data.html";
-  } else {
-    alert("Noto‘g‘ri parol!");
-  }
-}
-
+});
 </script>
 
 </body>
